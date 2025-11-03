@@ -1,0 +1,48 @@
+# Configuration template for Film Dubbing Application
+# Copy this file to config.yaml and adjust settings as needed
+
+# Whisper settings
+whisper:
+  model_size: "medium"  # tiny, base, small, medium, large
+  device: "cuda"  # cuda or cpu
+  language: "en"  # source language
+  
+# Translation settings
+translation:
+  source_lang: "en"
+  target_lang: "pl"
+  service: "google"  # google, deepl, etc.
+
+# TTS settings
+tts:
+  model_name: "tts_models/pl/mai_female/vits"  # Polish TTS model
+  speaker: null
+  language: "pl"
+  
+# Video processing settings
+video:
+  silence_threshold: 0.4  # seconds - remove silence shorter than this
+  min_segment_duration: 1.0  # minimum segment duration in seconds
+  max_segment_duration: 30.0  # maximum segment duration in seconds
+  tempo_adjustment_enabled: true
+  add_keyframes: true
+  
+# Audio settings
+audio:
+  sample_rate: 16000
+  silence_threshold_db: -40
+  
+# Output settings
+output:
+  format: "mp4"
+  codec: "libx264"
+  audio_codec: "aac"
+  bitrate: "5000k"
+  
+# Paths
+paths:
+  temp_dir: "temp_segments"
+  output_dir: "output"
+  cache_dir: "cache"
+  models_dir: "models"
+  dictionary_file: "custom_dictionary.json"
