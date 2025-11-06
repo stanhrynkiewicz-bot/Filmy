@@ -9,10 +9,10 @@ import os
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import Qt
 
-# Add src directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+# Add project root to path to allow imports from src
+sys.path.insert(0, os.path.dirname(__file__))
 
-from gui.main_window import MainWindow
+from src.gui.main_window import MainWindow
 
 
 def main():
