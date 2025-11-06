@@ -1,0 +1,32 @@
+{
+  "trading_terms": {
+    "trading": "trading",
+    "forex": "forex",
+    "stock": "akcja",
+    "stocks": "akcje",
+    "market": "rynek",
+    "chart": "wykres",
+    "indicator": "wskaźnik",
+    "resistance": "opór",
+    "support": "wsparcie",
+    "trend": "trend",
+    "bullish": "zwyżkujący",
+    "bearish": "spadkowy",
+    "candlestick": "świeca",
+    "volume": "wolumen",
+    "position": "pozycja",
+    "trade": "transakcja",
+    "profit": "zysk",
+    "loss": "strata",
+    "broker": "broker",
+    "leverage": "dźwignia",
+    "margin": "depozyt zabezpieczający",
+    "pip": "pips",
+    "spread": "spread",
+    "long": "pozycja długa",
+    "short": "pozycja krótka",
+    "scalping": "scalping",
+    "swing trading": "swing trading",
+    "day trading": "day trading"
+  }
+}
