@@ -9,8 +9,8 @@ from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
                              QPushButton, QLabel, QProgressBar, QFileDialog,
                              QTabWidget, QTextEdit, QMessageBox, QGroupBox,
                              QLineEdit, QComboBox, QCheckBox, QSpinBox, QDoubleSpinBox)
-from PyQt5.QtCore import Qt, QThread, pyqtSignal
-from PyQt5.QtGui import QFont, QIcon
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QMetaType
+from PyQt5.QtGui import QFont, QIcon, QTextCursor
 
 from src.utils.config_manager import ConfigManager
 from src.core.dubbing_engine import DubbingEngine
@@ -452,10 +452,36 @@ class MainWindow(QMainWindow):
             self.progress_bar.setValue(0)
     
     def log(self, message: str):
-        """Dodaj wiadomość do logu
+        """Dodaj wiadomość do logu (thread-safe)
         
         Args:
             message: Wiadomość do wyświetlenia
         """
-        self.log_text.append(message)
+        # Używamy invokeMethod aby zapewnić, że append jest wywołany w głównym wątku GUI
+        from PyQt5.QtCore import QMetaObject, Qt as QtCore_Qt
+        QMetaObject.invokeMethod(self.log_text, "append", QtCore_Qt.QueuedConnection, message)
         self.statusBar().showMessage(message)
+    
+    def closeEvent(self, event):
+        """Obsługa zamykania okna - bezpiecznie zakończ wątek roboczy
+        
+        Args:
+            event: Zdarzenie zamknięcia
+        """
+        if self.worker and self.worker.isRunning():
+            reply = QMessageBox.question(
+                self, 
+                'Potwierdzenie',
+                'Przetwarzanie jest w toku. Czy na pewno chcesz zamknąć aplikację?',
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.No
+            )
+            
+            if reply == QMessageBox.Yes:
+                self.worker.terminate()
+                self.worker.wait()
+                event.accept()
+            else:
+                event.ignore()
+        else:
+            event.accept()
