@@ -12,11 +12,11 @@ from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtGui import QFont, QIcon
 
-from ..utils.config_manager import ConfigManager
-from ..core.dubbing_engine import DubbingEngine
-from .dictionary_editor import DictionaryEditor
-from .translation_editor import TranslationEditor
-from .settings_dialog import SettingsDialog
+from src.utils.config_manager import ConfigManager
+from src.core.dubbing_engine import DubbingEngine
+from src.gui.dictionary_editor import DictionaryEditor
+from src.gui.translation_editor import TranslationEditor
+from src.gui.settings_dialog import SettingsDialog
 
 
 class DubbingWorker(QThread):
