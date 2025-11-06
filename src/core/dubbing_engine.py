@@ -6,10 +6,10 @@ Koordynuje proces transkrypcji, tłumaczenia, TTS i przetwarzania wideo
 import os
 import shutil
 from typing import List, Dict, Optional, Callable
-from .transcription import TranscriptionEngine
-from .translation import TranslationEngine
-from .tts import TTSEngine
-from .video_processor import VideoProcessor
+from src.core.transcription import TranscriptionEngine
+from src.core.translation import TranslationEngine
+from src.core.tts import TTSEngine
+from src.core.video_processor import VideoProcessor
 
 
 class DubbingEngine:
